@@ -14,10 +14,13 @@
         // https://github.com/microsoft/vscode-remote-release/issues/8169
         "extensions.verifySignature": false
       },
-      "extensions": ["ms-vscode.cpptools", 
-                      "ms-vscode.cmake-tools", 
-                      "cschlosser.doxdocgen",
-                      "mhutchie.git-graph"]
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.cmake-tools",
+        "cschlosser.doxdocgen",
+        "mhutchie.git-graph"
+      ]
     }
   }
 }

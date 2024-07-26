@@ -18,6 +18,8 @@ run:
 		--rm \
 		-it \
 		--platform linux/amd64 \
+		--workdir /builder/mnt \
+		-v ${PWD}/:/builder/mnt \
 		cproject-builder:latest \
 		/bin/bash
 

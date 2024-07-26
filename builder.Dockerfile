@@ -17,3 +17,7 @@ RUN apt-get install -y --no-install-recommends \
     gcovr \
     wget \
     && rm -rf /var/lib/apt/lists/*
+
+    VOLUME ["/builder/mnt"]
+    WORKDIR /builder/mnt
+
