@@ -7,12 +7,19 @@ DOCKERFILE = builder.Dockerfile
 # Define the build target
 .PHONY: build
 build:
-	docker build -f $(DOCKERFILE) -t $(IMAGE_NAME):$(IMAGE_TAG) .
+	docker build -f $(DOCKERFILE) \
+		-t $(IMAGE_NAME):$(IMAGE_TAG) \
+		.
 
 # Run the build target
 .PHONY: run
 run:
-	@echo "spoofed docker run for now"
+	docker run \
+		--rm \
+		-it \
+		--platform linux/amd64 \
+		cproject-builder:latest \
+		/bin/bash
 
 # Define the clean target
 .PHONY: clean

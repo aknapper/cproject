@@ -1,5 +1,6 @@
 
-```bash
+# Usage
+```shell
 $ make help
 Makefile for building Docker images
 Usage:
