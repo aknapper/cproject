@@ -18,10 +18,10 @@ RUN apt-get install -y --no-install-recommends \
     wget \
     && rm -rf /var/lib/apt/lists/*
 
-    VOLUME ["/builder/mnt"]
-    WORKDIR /builder/mnt
+VOLUME ["/builder/mnt"]
+WORKDIR /builder/mnt
 
 
-    # Install Unity and Ceedling for unit tests
-    RUN gem install ceedling
-    ENV RUBYOPT "-KU -E utf-8:utf-8"
+# Install Unity and Ceedling for unit tests
+RUN gem install ceedling
+ENV RUBYOPT "-KU -E utf-8:utf-8"

@@ -4,15 +4,15 @@ IMAGE_NAME = ${PROJECT_NAME}-builder
 IMAGE_TAG = latest
 DOCKERFILE = builder.Dockerfile
 
-# Define the build target
-.PHONY: build
+# Define the container-build target
+.PHONY: container-build
 build:
 	docker build -f $(DOCKERFILE) \
 		-t $(IMAGE_NAME):$(IMAGE_TAG) \
 		.
 
-# Run the build target
-.PHONY: run
+# Run the container-run target
+.PHONY: container-run
 run:
 	docker run \
 		--rm \
@@ -23,20 +23,31 @@ run:
 		cproject-builder:latest \
 		/bin/bash
 
-# Define the clean target
-.PHONY: clean
+# Define the container-clean target
+.PHONY: container-clean
 clean:
 	-docker rmi $(IMAGE_NAME):$(IMAGE_TAG)
+
+# Define the test target
+.PHONY: test
+test:
+	cd tests/unittest && ceedling test:all && ceedling gcov:all && ceedling utils:gcov
+
+.PHONY: clean
+clean:
+	rm -rf build tests/unittest/build
 
 # Define the help target
 .PHONY: help
 help:
 	@echo "Makefile for building Docker images"
 	@echo "Usage:"
-	@echo "  make build       Build the Docker image"
-	@echo "  make run         Run the Docker image"
-	@echo "  make clean       Remove the Docker image"
-	@echo "  make help        Show this help message"
+	@echo "  make container-build	Build the Docker image"
+	@echo "  make container-run	Run the Docker image"
+	@echo "  make container-clean	Remove the Docker image"
+	@echo "  make test		Execute unit tests and generate coverage reports"
+	@echo "  make clean		Clean bins and tests"
+	@echo "  make help		Show this help message"
 
 # Default target
 .DEFAULT_GOAL := help
