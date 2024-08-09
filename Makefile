@@ -6,14 +6,14 @@ DOCKERFILE = builder.Dockerfile
 
 # Define the container-build target
 .PHONY: container-build
-build:
+container-build:
 	docker build -f $(DOCKERFILE) \
 		-t $(IMAGE_NAME):$(IMAGE_TAG) \
 		.
 
 # Run the container-run target
 .PHONY: container-run
-run:
+container-run:
 	docker run \
 		--rm \
 		-it \
@@ -25,7 +25,7 @@ run:
 
 # Define the container-clean target
 .PHONY: container-clean
-clean:
+container-clean:
 	-docker rmi $(IMAGE_NAME):$(IMAGE_TAG)
 
 # Define the test target
